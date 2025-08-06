@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💞 Naman & Riya's Forever Love Contract 💞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Background and overall style */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe4ec 0%, #d1e0ff 100%);
+      font-family: 'Quicksand', 'Comic Sans MS', cursive, sans-serif;
+      color: #444;
+      position: relative;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      animation: float 6s linear infinite;
+      opacity: 0.7;
+      z-index: 1;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.7);
+        opacity: .8;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1.5);
+        opacity: 0.2;
+      }
+    }
+
+    /* Card styling */
+    .contract-container {
+      background: rgba(255,255,255,0.85);
+      max-width: 530px;
+      margin: 54px auto 32px auto;
+      border-radius: 24px;
+      padding: 44px 34px 34px 34px;
+      box-shadow: 0 16px 40px #ffb0d46b, 0 4px 16px #789ffc44;
+      position: relative;
+      z-index: 2;
+      border: 2px dashed #fe98c5;
+      animation: popIn 1.5s cubic-bezier(.32,1.56,.36,.97);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.85) rotate(-4deg); opacity: 0; }
+      80% { transform: scale(1.04) rotate(2deg);}
+      100% { transform: scale(1) rotate(0deg); opacity: 1;}
+    }
+
+    .contract-title {
+      text-align: center;
+      font-size: 2.1rem;
+      color: #ff508e;
+      font-weight: bold;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 24px #ffe0ef91, 0 1px 3px #fff3;
+      transition: color 0.3s;
+    }
+    .contract-title:hover {
+      color: #789bfa;
+      transform: scale(1.05);
+      text-shadow: 0 8px 32px #fae0ee, 0 2px 8px #daecff88;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.15rem;
+      color: #6b6376;
+      margin: 0 0 24px 0;
+      font-style: italic;
+    }
+
+    .names {
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .name-boy, .name-girl {
+      font-weight: 600;
+      font-size: 1.16rem;
+      padding: 2px 10px;
+      border-radius: 18px;
+      margin: 3px 8px;
+      display: inline-block;
+    }
+    .name-boy {
+      background: linear-gradient(90deg,#c2f0ff 45%,#aecbfa 100%);
+      color: #4387b3;
+      box-shadow: 0 2px 10px #aee5ff44;
+      border: 1.3px solid #62aed3;
+    }
+    .name-girl {
+      background: linear-gradient(90deg,#fef3da 45%,#ffc7ee 100%);
+      color: #d43486;
+      box-shadow: 0 2px 10px #ffd6ed88;
+      border: 1.3px solid #ff99c4;
+    }
+
+    .emoji-desc {
+      font-size: 1rem;
+      color: #7a7b7c;
+      margin-bottom: 10px;
+    }
+
+    .love-paragraph {
+      background: linear-gradient(90deg,#fff2fa 64%, #e3f0ff 100%);
+      border-radius: 13px;
+      padding: 12px 16px;
+      margin-bottom: 28px;
+      font-size: 1.1rem;
+      border-left: 5px solid #ffc6e6;
+      box-shadow: 0 4px 8px #ffd1e6a0;
+    }
+
+    .love-list {
+      margin: 0 0 24px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .love-list li {
+      margin: 17px 0 0 0;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ffe3f9 70%, #e7fffb 100%);
+      padding: 16px 17px 8px 17px;
+      box-shadow: 0 2px 16px #f8aac66b;
+      font-size: 1.12rem;
+      border-left: 5px solid #ffacd8;
+      position: relative;
+      transition: background 0.4s;
+    }
+    .love-list li:hover {
+      background: linear-gradient(90deg,#e6faff 55%,#ffebf7 100%);
+      border-left: 5px solid #8ecfff;
+      box-shadow: 0 6px 24px #b5e3fb99;
+    }
+    .clause-title {
+      font-weight: 600;
+      color: #e65d9c;
+      font-size: 1.08rem;
+      margin-bottom: 7px;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      padding-right: 10px;
+    }
+    .clause-heart {
+      font-size: 1.12rem;
+      vertical-align: middle;
+      color: #f3557c;
+      filter: drop-shadow(0 2px 4px #ff9dd855);
+      margin-right: 4px;
+      animation: heartBeat 2.8s infinite;
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      18% { transform: scale(1.22); }
+      25% { transform: scale(0.97);}
+      33% { transform: scale(1.11);}
+    }
+
+    .signature {
+      font-family: 'Dancing Script', 'Comic Sans MS', cursive, sans-serif;
+      color: #c778a0;
+      font-size: 1.3rem;
+      text-align: center;
+      margin: 34px 0 2px 0;
+      letter-spacing: 1px;
+    }
+    .date {
+      text-align: center;
+      font-size: 1.12rem;
+      color: #8ea1c2;
+      margin-top: 4px;
+      letter-spacing: 0.7px;
+    }
+
+    /* Cute interactive heart button */
+    .heart-btn {
+      display: block;
+      margin: 16px auto 0 auto;
+      background: linear-gradient(120deg,#ff7eb3 11%,#fd3a69 68%,#ffa7c2 100%);
+      border: none;
+      color: white;
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-size: 1.13rem;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px #fb84ad69;
+      transition: background 0.35s, transform 0.15s;
+      outline: none;
+      position: relative;
+      z-index: 1;
+      animation: heartBeat 2.8s infinite;
+    }
+    .heart-btn:hover {
+      background: linear-gradient(120deg,#fd3a69 10%,#ffa7c2 89%);
+      color: #fff0f9;
+      transform: scale(1.07) rotate(-2deg);
+      box-shadow: 0 14px 32px #ff84e199;
+    }
+    .heart-pop {
+      font-size: 1.62rem;
+      position: absolute;
+      left: 54%;
+      top: -22px;
+      animation: jumpPop 0.85s linear;
+    }
+    @keyframes jumpPop {
+      0% {transform: scale(.5) translateY(0);}
+      32% {transform: scale(1.32) translateY(-25px);}
+      100% {transform: scale(0.7) translateY(-65px); opacity: 0;}
+    }
+
+    /* Responsive */
+    @media (max-width: 700px){
+      .contract-container { padding: 24px 4vw 20px 4vw; }
+      .contract-title {font-size: 1.3rem;}
+      .love-paragraph, .love-list li, .signature {font-size: 1rem;}
+    }
+  </style>
+  <!-- Cute Google Fonts for charm -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Floating decorative hearts -->
+  <span class="floating-heart" style="left:6%;animation-delay:0.8s;">💗</span>
+  <span class="floating-heart" style="left:21%;animation-delay:1.2s;font-size:24px;">💕</span>
+  <span class="floating-heart" style="left:62%;animation-delay:0.2s;font-size:36px;">💖</span>
+  <span class="floating-heart" style="left:88%;animation-delay:3.2s;font-size:21px;">💞</span>
+  <span class="floating-heart" style="left:44%;animation-delay:2.2s;font-size:28px;">❤️</span>
+
+  <div class="contract-container">
+    <div class="contract-title">💞 Naman &amp; Riya's Forever Love Contract 💞</div>
+    <div class="subtitle">This is a very special contract between two hearts who may be far in distance,<br>
+      but never far in love. <span style="font-size:1.19em;">🥺💌</span>
+    </div>
+    <div class="names">
+      <span class="name-boy">Naman Goyal</span>
+      <span class="emoji-desc">– the Dashing Boyfriend 💁‍♂️</span>
+      <br>
+      <span class="name-girl">Riya Sharma</span>
+      <span class="emoji-desc">– the Gorgeous Girlfriend 💁‍♀️</span>
+    </div>
+    <div class="love-paragraph">
+      Together, we promise to care, trust, support, and love each other — <b>every day, no matter what</b>.
+      This contract is made with full honesty, silly smiles, and a <span style="color:#f770a7;font-size:1.12em;">lot of love</span>.
+    </div>
+    <ul class="love-list">
+      <li>
+        <span class="clause-title"><span class="clause-heart">💖</span>Forever Clause</span><br>
+        We are not in this relationship for fun or time-pass. We are in it for the long run — <b>forever</b>.<br>
+        No matter the distance, stress, or challenges — we will not give up on each other.<br>
+        Forever means forever. <b>We both agree. Period.</b>
+      </li>
+      <li>
+        <span class="clause-title"><span class="clause-heart">💬</span>Communication Agreement</span><br>
+        We will talk every day. Even if it’s short, even if we’re tired — <b>our voices matter</b>.<br>
+        We will not ignore or ghost each other. If something’s wrong, we will talk about it.<br>
+        Honest, kind, and regular communication is the base of our love.
+      </li>
+      <li>
+        <span class="clause-title"><span class="clause-heart">💞</span>Jealousy & Trust Treaty</span><br>
+        We trust each other fully. No spying, no doubting, no overthinking.<br>
+        Feeling jealous is okay sometimes — but we will <b>talk instead of fighting</b>.<br>
+        We promise to <b>never break each other's trust. Ever.</b>
+      </li>
+      <li>
+        <span class="clause-title"><span class="clause-heart">🌸</span>Love Maintenance Duties</span><br>
+        We will do small things to keep the love alive — like cute texts, calls, or surprise messages.<br>
+        We will make time for each other — <b>no matter how busy life gets</b>.<br>
+        If we fight, we’ll say sorry, fix it, and not let ego win.
+      </li>
+      <li>
+        <span class="clause-title"><span class="clause-heart">✈️</span>Reunion Clause</span><br>
+        We will meet in real life as many times as we can, and plan trips together.<br>
+        One day, we will <b>close the distance forever</b> and be in the same city or home.<br>
+        This long-distance thing is <b>temporary. Our love is not.</b>
+      </li>
+      <li>
+        <span class="clause-title"><span class="clause-heart">🌟</span>Forever & Always Oath</span><br>
+        We are not perfect, but our love is real.<br>
+        No matter what happens — <b>we will choose each other, every single time.</b><br>
+        Forever & always, Naman loves Riya. Forever & always, Riya loves Naman.
+      </li>
+    </ul>
+    <button class="heart-btn" onclick="heartPop(this)">
+      Send a Virtual Hug 💌
+      <span id="popup-heart" style="display:none;" class="heart-pop">💖</span>
+    </button>
+    <div class="signature">
+      Signed with all the love in the world,<br>
+      Naman Goyal &amp; Riya Sharma
+    </div>
+    <div class="date">
+      August 2025
+    </div>
+  </div>
+  <script>
+    // Heart pop hover effect for cuteness
+    function heartPop(btn){
+      var popup = btn.querySelector('#popup-heart');
+      if(!popup) return;
+      popup.style.display = 'inline';
+      setTimeout(()=>{popup.style.display='none';}, 800);
+    }
+  </script>
+</body>
+</html>
