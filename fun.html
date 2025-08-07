@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎉 Fun Time – Naman & Riya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23ff69b4' d='M8 14s6-4.35 6-8.5S10.94 0 8 3.33 2 1.5 2 5.5 8 14 8 14z'/></svg>'>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to right, #ffd1dc, #ffe3e3);
+      overflow: hidden;
+    }
+
+    nav {
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      font-weight: bold;
+      text-decoration: none;
+      color: #d8438c;
+      margin: 0 10px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d8438c;
+    }
+
+    /* STICKER WALL */
+    .sticker-wall {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .sticker {
+      font-size: 2rem;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .sticker:hover {
+      transform: scale(1.4);
+    }
+
+    .placed {
+      position: absolute;
+      pointer-events: none;
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* MOOD SELECTOR */
+    .mood-selector {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .mood-btn {
+      background: #fff;
+      border: 2px solid #fe98c5;
+      border-radius: 20px;
+      padding: 10px 16px;
+      margin: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .mood-btn:hover {
+      background: #ffe3fb;
+    }
+
+    #mood-result {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #a83364;
+      text-align: center;
+      min-height: 30px;
+    }
+	.dynamic-heart {
+  position: fixed;
+  bottom: -40px;
+  will-change: transform, opacity;
+  animation: rise 6s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  font-size: 24px;
+  opacity: 0.7;
+}
+@keyframes rise {
+  0%   { transform: translateY(0) rotate(0deg) scale(0.6); opacity: 1; }
+  100% { transform: translateY(-150vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="fun.html">🎉 Fun Time</a>
+  </nav>
+
+  <h2>✨ Let's Play Together ✨</h2>
+
+  <!-- Sticker Wall -->
+  <div class="sticker-wall">
+    <p>Click to place stickers anywhere on the screen!</p>
+    <span class="sticker">💖</span>
+    <span class="sticker">🐻</span>
+    <span class="sticker">🌸</span>
+    <span class="sticker">🌈</span>
+    <span class="sticker">🍓</span>
+  </div>
+
+  <!-- Mood of the Day -->
+  <div class="mood-selector">
+    <h3>🌈 Mood of the Day</h3>
+    <button class="mood-btn" data-mood="Obsessed with you 💘">Obsessed with you 💘</button>
+    <button class="mood-btn" data-mood="Feeling kissy 😘">Feeling kissy 😘</button>
+    <button class="mood-btn" data-mood="Missing you badly 🥹">Missing you badly 🌸</button>
+    <div id="mood-result"></div>
+  </div>
+
+  <script>
+    // Initialize EmailJS
+    emailjs.init("S2Men4c1to3zZ2MPT");
+
+    // Sticker placing
+    document.querySelectorAll('.sticker').forEach(sticker => {
+      sticker.addEventListener('click', e => {
+        const emoji = e.target.textContent;
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        const el = document.createElement('div');
+        el.textContent = emoji;
+        el.className = 'placed';
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.fontSize = `${Math.random() * 40 + 24}px`;
+        document.body.appendChild(el);
+      });
+    });
+
+    // Mood selector logic
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mood = btn.getAttribute('data-mood');
+        document.getElementById('mood-result').textContent = `Today’s mood: ${mood}`;
+        sendMoodEmail(mood);
+      });
+    });
+
+    // Send mood via EmailJS
+   
+	function sendMoodEmail(mood) {
+  emailjs.send("service_r2vf22x", "template_mqkg6fu", {
+    mood: mood,
+    email: "namangoyal7682@gmail.com"  // 👈 Replace with her real email
+  }).then(() => {
+    
+    console.log("Mood email sent to Riya 💌");
+  }, (err) => {
+    console.error("Email send failed:", err);
+    
+  });
+}
+// Floating heart generator
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.className = 'dynamic-heart';
+  heart.textContent = '💗';
+
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (Math.random() * 20 + 18) + 'px';
+  heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 200); // Frequency: More hearts per second
+
+  </script>
+</body>
+</html>
