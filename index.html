@@ -24,6 +24,35 @@
       overflow-y: auto;
       position: relative;
     }
+		/* VOICE NOTES BUTTONS */
+	.voice-notes {
+	  margin: 30px auto;
+	  text-align: center;
+	  max-width: 500px;
+	}
+	.voice-notes h3 {
+	  font-size: 1.3rem;
+	  color: #d8438c;
+	  margin-bottom: 12px;
+	}
+	.voice-btn {
+	  background: #fff;
+	  border: 2px solid #fe98c5;
+	  border-radius: 24px;
+	  padding: 8px 14px;
+	  margin: 6px;
+	  font-size: 1rem;
+	  cursor: pointer;
+	  transition: background 0.3s, transform 0.2s;
+	}
+	.voice-btn:hover {
+	  background: #ffe3fb;
+	  transform: translateY(-2px);
+	}
+	.voice-btn.playing {
+	  background: #ffcee7;
+	  border-color: #ff69b4;
+	}
 
     /* --- DYNAMIC HEART SHOWER --- */
     .dynamic-heart {
@@ -294,6 +323,24 @@
       “I love you more each day, Riya.”<br>
       
     </div>
+	<!-- Voice Messages Section -->
+<div class="voice-notes">
+  <h3>🎙️ Voice Messages</h3>
+  <button class="voice-btn" data-audio="note1">🎙️ Riya says I love you</button>
+  <button class="voice-btn" data-audio="note2">🎙️ Naman says I love you</button>
+
+  <!-- hidden audio elements -->
+  <audio id="note1" preload="auto">
+  <source src="love_riya.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+  <audio id="note2" preload="auto">
+  <source src="love_naman.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+</div>
+
 
     <div class="signature">
       Signed with all the love in the world,<br>
@@ -330,6 +377,26 @@
       const note = document.getElementById('loveNote');
       note.classList.add('show');
     }
+	// Voice message playback
+document.querySelectorAll('.voice-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // stop any currently playing
+    document.querySelectorAll('audio').forEach(a => {
+      a.pause();
+      a.currentTime = 0;
+    });
+    // play the selected note
+    const audio = document.getElementById(btn.dataset.audio);
+    audio.play();
+    // highlight the playing button
+    document.querySelectorAll('.voice-btn')
+      .forEach(b => b.classList.remove('playing'));
+    btn.classList.add('playing');
+    // remove highlight when done
+    audio.onended = () => btn.classList.remove('playing');
+  });
+});
+
   </script>
 </body>
 </html>
