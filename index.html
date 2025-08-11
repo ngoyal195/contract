@@ -262,6 +262,17 @@
 .fun-btn:hover {
   transform: scale(1.05);
 }
+	  .love-note {
+    display: none;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #d6336c;
+  }
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+  }
 
   </style>
 </head>
@@ -331,15 +342,12 @@
     </ul>
 
     <button class="heart-btn" onclick="heartPop(this)">
-      Wanna know a secret from Naman? Click me 💌
-      <span class="heart-pop">💖</span>
-    </button>
+  Wanna know a secret from Naman? Click me 💌
+  <span class="heart-pop">💖</span>
+</button>
 
-    <!-- Hidden love note -->
-    <div id="loveNote" class="love-note">
-      “I love you more each day, Riya.”<br>
-      
-    </div>
+<!-- Hidden love note -->
+<div id="loveNote" class="love-note"></div>
 	<!-- Voice Messages Section -->
 <div class="voice-notes">
   <h3>🎙️ Voice Messages</h3>
@@ -368,6 +376,29 @@
   </div>
 
   <script>
+	  const loveMessages = [
+    "I love you more each day, Riya. ❤️",
+    "You are my sunshine on a cloudy day, my love Riiiii ☀️",
+    "Every heartbeat whispers your words, your name 💓",
+    "You’re my favorite person in the world baby. 🌌",
+    "Life’s better with you in it. I'll stay with you all the time! 💕"
+  ];
+
+  function heartPop(btn) {
+    // Pick a random message
+    const randomMsg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+    
+    // Set it in the love note div
+    document.getElementById("loveNote").innerHTML = randomMsg;
+
+    // Optionally, show it if it’s hidden
+    document.getElementById("loveNote").style.display = "block";
+
+    // Optional: little animation for the heart
+    const heart = btn.querySelector(".heart-pop");
+    heart.style.animation = "pop 0.5s ease";
+    setTimeout(() => heart.style.animation = "", 500);
+  }
     // generate 85 random hearts
     document.addEventListener('DOMContentLoaded', () => {
       const emojis = ['💗','💖','💕','💓','💝','❤️'];
@@ -418,3 +449,4 @@ document.querySelectorAll('.voice-btn').forEach(btn => {
   </script>
 </body>
 </html>
+
