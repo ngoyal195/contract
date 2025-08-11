@@ -114,6 +114,7 @@
       height: 300px;
       border-top: 2px dashed #fe98c5;
       border-bottom: 2px dashed #fe98c5;
+      overflow: hidden;
     }
 
     .falling-heart {
@@ -133,6 +134,20 @@
       font-size: 1.2rem;
       color: #d8438c;
       margin-top: 10px;
+    }
+
+    /* GUESS THE EMOJI GAME */
+    .emoji-game {
+      text-align: center;
+      margin-top: 40px;
+      padding: 15px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255,150,200,0.3);
+    }
+    .emoji-game input {
+      font-size: 1rem;
+      padding: 5px;
     }
   </style>
 </head>
@@ -169,6 +184,16 @@
     <div class="score">Score: <span id="score">0</span></div>
   </div>
 
+  <!-- Guess the Emoji Game -->
+  <div class="emoji-game">
+    <h3>🤔 Guess the Emoji Sequence</h3>
+    <button id="startEmojiGame">Show Emojis</button>
+    <div id="emojiDisplay" style="font-size:2rem; margin-top:10px;"></div>
+    <input type="text" id="emojiGuess" placeholder="Type emojis here..." disabled>
+    <button id="checkGuess" disabled>Check</button>
+    <div id="emojiResult" style="margin-top:10px; font-weight:bold;"></div>
+  </div>
+
   <script>
     // Initialize EmailJS
     emailjs.init("S2Men4c1to3zZ2MPT");
@@ -198,7 +223,6 @@
       });
     });
 
-    // Send mood via EmailJS
     function sendMoodEmail(mood) {
       emailjs.send("service_r2vf22x", "template_mqkg6fu", {
         mood: mood
@@ -229,27 +253,49 @@
       heart.textContent = '💖';
       const gameArea = document.getElementById('gameSection');
       heart.style.left = Math.random() * (gameArea.offsetWidth - 30) + 'px';
-      const duration = Math.random() * 2 + 3; // 3-5 seconds fall
+      const duration = Math.random() * 2 + 3; 
       heart.style.animationDuration = duration + 's';
-
       heart.addEventListener('click', () => {
         score++;
         document.getElementById('score').textContent = score;
         heart.remove();
       });
-
       gameArea.appendChild(heart);
-
-      // Remove heart if not clicked
       setTimeout(() => {
-        if (heart.parentElement) {
-          heart.remove();
-        }
+        if (heart.parentElement) heart.remove();
       }, duration * 1000);
     }
-
-    // Spawn a new heart every 800ms
     setInterval(spawnFallingHeart, 800);
+
+    // Guess the Emoji Game
+    const romanticEmojis = ["💍", "🍫", "💐", "💖", "🐻", "💌", "🌸", "🥰", "😘"];
+    let currentSequence = [];
+    document.getElementById("startEmojiGame").addEventListener("click", () => {
+      currentSequence = [];
+      for (let i = 0; i < 3; i++) {
+        currentSequence.push(romanticEmojis[Math.floor(Math.random() * romanticEmojis.length)]);
+      }
+      const display = document.getElementById("emojiDisplay");
+      display.textContent = currentSequence.join(" ");
+      document.getElementById("emojiGuess").value = "";
+      document.getElementById("emojiResult").textContent = "";
+      setTimeout(() => {
+        display.textContent = "🤫 Now type what you saw!";
+        document.getElementById("emojiGuess").disabled = false;
+        document.getElementById("checkGuess").disabled = false;
+      }, 3000);
+    });
+    document.getElementById("checkGuess").addEventListener("click", () => {
+      const guess = document.getElementById("emojiGuess").value.trim();
+      const result = document.getElementById("emojiResult");
+      if (guess === currentSequence.join(" ")) {
+        result.textContent = "💖 Yay! You remembered perfectly!";
+        result.style.color = "green";
+      } else {
+        result.textContent = `😢 Oops! The correct sequence was: ${currentSequence.join(" ")}`;
+        result.style.color = "red";
+      }
+    });
   </script>
 </body>
 </html>
