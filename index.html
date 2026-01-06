@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -27,48 +31,52 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2.2rem;
-            font-weight: 600;
-        }
-
         p {
             font-size: 1.1rem;
             line-height: 1.7;
             opacity: 0.95;
         }
 
-        .heart {
-            font-size: 2rem;
-            margin-top: 20px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 0.85rem;
-            opacity: 0.7;
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #9fdfff;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
+
     <div class="card">
         <p>
             my goal is to never let myself fall as low as i did last year, never again. <br><br>
-			a person who doesn't care anymore was once a person who cared too much...<br>
-			once you get bored of this world, tell me you want to come back and you'll find me standing still here for you
+            a person who doesn't care anymore was once a person who cared too much...<br>
+            once you get bored of this world, tell me you want to come back and you'll find me standing still here for you
         </p>
-        <a href="https://ngoyal195.github.io/thanksriya/">https://ngoyal195.github.io/thanksriya/</a>
 		<a href="https://ngoyal195.github.io/love/">https://ngoyal195.github.io/love/</a>
+        <a href="https://ngoyal195.github.io/thanksriya/">https://ngoyal195.github.io/thanksriya/</a>
+        
     </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("S2Men4c1to3zZ2MPT");
+
+        // Send email only once per visitor
+        if (!localStorage.getItem("visit_notified")) {
+            emailjs.send("service_r2vf22x", "template_mqkg6fu", {
+                page: "Sorry Page Visited",
+                url: window.location.href,
+                time: new Date().toLocaleString(),
+                device: navigator.userAgent
+            }).then(() => {
+                console.log("Visit notification sent 💌");
+                localStorage.setItem("visit_notified", "true");
+            }).catch(err => {
+                console.error("Visit email failed:", err);
+            });
+        }
+    </script>
+
 </body>
 </html>
-
-
