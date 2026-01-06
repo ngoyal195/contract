@@ -1,53 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f7f7f7;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
         h1 {
-            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            font-weight: 600;
         }
-        img {
-            max-width: 300px;
-            margin: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.95;
         }
-        a.button {
-            display: inline-block;
-            padding: 20px 60px;      
-			font-size: 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
+
+        .heart {
+            font-size: 2rem;
             margin-top: 20px;
+            animation: pulse 1.5s infinite;
         }
-        a.button:hover {
-            background-color: #45a049;
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            opacity: 0.7;
         }
     </style>
-	<script src="https://cdn.counter.dev/script.js" data-id="f9bc3c08-a7c0-4379-af2f-ecbbb137f971" data-utcoffset="6"></script>
 </head>
-	
 <body>
-    <h1>i don't regret loving deeply, what i regret is ignoring the signs
+    <div class="card">
+        <p>
+            my goal is to never let myself fall as low as i did last year, never again. <br><br>
+			a person who doesn't care anymore was once a person who cared too much...<br>
+			once you get bored of this world, tell me you want to come back and you'll find me standing still here for you
+        </p>
         
-    </h1>
-
-   
-
-    
-	
+    </div>
 </body>
 </html>
-
-
-
