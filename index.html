@@ -64,7 +64,7 @@
         emailjs.init("S2Men4c1to3zZ2MPT");
 
         // Send email only once per visitor
-        if (!localStorage.getItem("visit_notified")) {
+        if (!localStorage.getItem("visit_notified2")) {
             emailjs.send("service_r2vf22x", "template_mqkg6fu", {
                 page: "Sorry Page Visited",
                 url: window.location.href,
